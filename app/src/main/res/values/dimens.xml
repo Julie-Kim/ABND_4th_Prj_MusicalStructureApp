@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="list_item_height">88dp</dimen>
+    <dimen name="list_item_padding">16dp</dimen>
+    <dimen name="track_name_text_size">24sp</dimen>
+    <dimen name="name_text_padding_end">8dp</dimen>
+    <dimen name="play_control_button_padding">16dp</dimen>
+    <dimen name="list_item_play_button_size">36dp</dimen>
+    <dimen name="title_text_size">48sp</dimen>
+    <dimen name="play_button_size">80dp</dimen>
+    <dimen name="title_text_padding_bottom">40dp</dimen>
+    <dimen name="play_buttons_margin_top">40dp</dimen>
+    <dimen name="prev_next_button_size">60dp</dimen>
+    <dimen name="track_info_text_size">24sp</dimen>
+    <dimen name="album_image_size">160dp</dimen>
+    <dimen name="album_image_stroke_width">2dp</dimen>
+    <dimen name="album_image_radius">16dp</dimen>
+    <dimen name="play_control_icon_stroke_width">6dp</dimen>
+    <dimen name="play_play_icon_start">10dp</dimen>
+    <dimen name="play_play_icon_top_bottom">5dp</dimen>
+    <dimen name="music_info_padding_top_bottom">40dp</dimen>
+</resources>

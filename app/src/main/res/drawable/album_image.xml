@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/album_image_background_color" />
+            <corners
+                android:bottomLeftRadius="@dimen/album_image_radius"
+                android:bottomRightRadius="@dimen/album_image_radius"
+                android:topLeftRadius="@dimen/album_image_radius"
+                android:topRightRadius="@dimen/album_image_radius" />
+            <stroke
+                android:width="@dimen/album_image_stroke_width"
+                android:color="@color/album_image_stroke_color" />
+        </shape>
+    </item>
+
+    <item
+        android:width="@dimen/album_image_size"
+        android:height="@dimen/album_image_size">
+        <bitmap android:src="@drawable/album_icon" />
+    </item>
+
+</layer-list>

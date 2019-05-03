@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.musicalstructureapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +20,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".KPopMusicActivity"
+            android:label="@string/category_kpop_music" />
+
+        <activity
+            android:name=".MyMusicActivity"
+            android:label="@string/category_my_music" />
+
+        <activity
+            android:name=".PlayActivity"
+            android:label="@string/play_music" />
+
     </application>
 
 </manifest>
