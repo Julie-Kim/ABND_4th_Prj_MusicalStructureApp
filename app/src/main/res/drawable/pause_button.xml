@@ -5,7 +5,7 @@
         <shape android:shape="oval">
             <stroke
                 android:width="@dimen/play_control_icon_stroke_width"
-                android:color="@color/play_control_icon_stroke_color" />
+                android:color="@color/play_control_icon_tint_color" />
         </shape>
     </item>
 

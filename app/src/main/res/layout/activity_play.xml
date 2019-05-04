@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingBottom="@dimen/title_text_padding_bottom"
+                android:layout_marginBottom="@dimen/title_text_margin_bottom"
                 android:textSize="@dimen/title_text_size"
                 android:textStyle="bold"
                 tools:text="Track name" />

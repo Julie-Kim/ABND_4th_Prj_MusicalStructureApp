@@ -12,10 +12,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class PlayActivity extends AppCompatActivity {
     private static final String TAG = "PlayActivity";
 
-    private MediaPlayer mMediaPlayer = new MediaPlayer();
+    private MediaPlayer mMediaPlayer;
+    private ArrayList<MusicTrack> mMusicTracks = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,10 +30,10 @@ public class PlayActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_play);
 
-        setMusicTitle();
-        setMusicAlbum();
-        setMusicArtist();
-        setMusicData();
+        if (getIntent() != null) {
+            mMusicTracks = getIntent().getParcelableArrayListExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_TRACK_LIST);
+            setMusicInfo(getIntent().getIntExtra(MusicTrackConstant.INTENT_EXTRA_POSITION, -1));
+        }
     }
 
     @Override
@@ -45,38 +48,39 @@ public class PlayActivity extends AppCompatActivity {
         }
     }
 
-    private void setMusicTitle() {
-        String musicTitle = getIntent().getStringExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_TITLE);
+    private void setMusicInfo(int position) {
+        if (position < 0 || position >= mMusicTracks.size()) {
+            return;
+        }
+
+        MusicTrack musicTrack = mMusicTracks.get(position);
+
         TextView titleText = findViewById(R.id.title_text_view);
-        titleText.setText(musicTitle);
+        titleText.setText(musicTrack.getTitle());
+
+        TextView albumText = findViewById(R.id.album_text_view);
+        albumText.setText(musicTrack.getAlbum());
+
+        TextView artistText = findViewById(R.id.artist_text_view);
+        artistText.setText(musicTrack.getArtist());
+
+        setMusicData(musicTrack.getData(), position);
     }
 
-    private void setMusicAlbum() {
-        String musicAlbum = getIntent().getStringExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_ALBUM);
-        TextView titleText = findViewById(R.id.album_text_view);
-        titleText.setText(musicAlbum);
-    }
-
-    private void setMusicArtist() {
-        String musicArtist = getIntent().getStringExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_ARTIST);
-        TextView titleText = findViewById(R.id.artist_text_view);
-        titleText.setText(musicArtist);
-    }
-
-    private void setMusicData() {
-        String musicData = getIntent().getStringExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_DATA);
-        if (TextUtils.isEmpty(musicData)) {
-            Toast.makeText(this, R.string.no_music_data, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Log.d(TAG, "Music Data : " + musicData);
-        if (!prepareMusic(musicData)) {
-            Toast.makeText(this, R.string.media_player_error, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
+    private void setMusicData(String musicData, final int position) {
         final ImageButton playButton = findViewById(R.id.play_button);
+        final ImageButton prevButton = findViewById(R.id.prev_track_button);
+        final ImageButton nextButton = findViewById(R.id.next_track_button);
+
+        Log.d(TAG, "setMusicData() Music Data : " + musicData);
+        if (isInvalidMusicData(musicData)) {
+            playButton.setEnabled(false);
+            prevButton.setEnabled(false);
+            nextButton.setEnabled(false);
+            return;
+        }
+
+        playButton.setImageResource(R.drawable.play_button);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +93,35 @@ public class PlayActivity extends AppCompatActivity {
                 }
             }
         });
+
+        prevButton.setEnabled(position > 0);
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setMusicInfo(position - 1);
+            }
+        });
+
+        nextButton.setEnabled(position < mMusicTracks.size() - 1);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setMusicInfo(position + 1);
+            }
+        });
+    }
+
+    private boolean isInvalidMusicData(String musicData) {
+        if (TextUtils.isEmpty(musicData)) {
+            Toast.makeText(this, R.string.no_music_data, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        if (!prepareMusic(musicData)) {
+            Toast.makeText(this, R.string.media_player_error, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -99,11 +132,14 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private boolean prepareMusic(String data) {
-        if (data == null) {
+        if (TextUtils.isEmpty(data)) {
             return false;
         }
 
         try {
+            releaseMediaPlayer();
+            mMediaPlayer = new MediaPlayer();
+
             mMediaPlayer.setDataSource(data);
             mMediaPlayer.prepare();
         } catch (Exception e) {
@@ -124,6 +160,7 @@ public class PlayActivity extends AppCompatActivity {
     private void releaseMediaPlayer() {
         if (mMediaPlayer != null) {
             mMediaPlayer.release();
+            mMediaPlayer = null;
         }
     }
 }

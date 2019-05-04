@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +17,24 @@ import java.util.ArrayList;
 class MusicTrackAdapter extends ArrayAdapter<MusicTrack> {
     private static final String TAG = "MusicTrackAdapter";
 
+    private ArrayList<MusicTrack> mMusicTracks = new ArrayList<>();
+
     MusicTrackAdapter(Activity context, ArrayList<MusicTrack> musicTracks) {
         super(context, 0, musicTracks);
+
+        setMusicTrackList(musicTracks);
+    }
+
+    private void setMusicTrackList(ArrayList<MusicTrack> musicTracks) {
+        mMusicTracks.clear();
+        mMusicTracks.addAll(musicTracks);
+
+        Log.d(TAG, "setMusicTrackList() size : " + mMusicTracks.size());
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         final MusicTrack musicTrack = getItem(position);
 
@@ -43,7 +55,7 @@ class MusicTrackAdapter extends ArrayAdapter<MusicTrack> {
         listItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startPlayActivity(musicTrack);
+                startPlayActivity(position);
             }
         });
 
@@ -51,20 +63,18 @@ class MusicTrackAdapter extends ArrayAdapter<MusicTrack> {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startPlayActivity(musicTrack);
+                startPlayActivity(position);
             }
         });
 
         return listItemView;
     }
 
-    private void startPlayActivity(MusicTrack musicTrack) {
+    private void startPlayActivity(int position) {
         Intent intent = new Intent(getContext(), PlayActivity.class);
 
-        intent.putExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_TITLE, musicTrack.getTitle());
-        intent.putExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_ALBUM, musicTrack.getAlbum());
-        intent.putExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_ARTIST, musicTrack.getArtist());
-        intent.putExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_DATA, musicTrack.getData());
+        intent.putParcelableArrayListExtra(MusicTrackConstant.INTENT_EXTRA_MUSIC_TRACK_LIST, mMusicTracks);
+        intent.putExtra(MusicTrackConstant.INTENT_EXTRA_POSITION, position);
 
         getContext().startActivity(intent);
     }
