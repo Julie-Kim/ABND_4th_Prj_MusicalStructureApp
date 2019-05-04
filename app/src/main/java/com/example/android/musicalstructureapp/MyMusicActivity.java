@@ -20,8 +20,6 @@ import java.util.ArrayList;
 public class MyMusicActivity extends AppCompatActivity {
     private static final String TAG = "MyMusicActivity";
 
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 10;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +33,7 @@ public class MyMusicActivity extends AppCompatActivity {
         // Check runtime permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MusicTrackConstant.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                 return;
             }
         }
@@ -58,7 +56,7 @@ public class MyMusicActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+            case MusicTrackConstant.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     getMyMusicTrackList();
                 }

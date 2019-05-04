@@ -72,27 +72,24 @@ public class PlayActivity extends AppCompatActivity {
         final ImageButton prevButton = findViewById(R.id.prev_track_button);
         final ImageButton nextButton = findViewById(R.id.next_track_button);
 
-        Log.d(TAG, "setMusicData() Music Data : " + musicData);
+        Log.d(TAG, "setMusicData() position: " + position + ", data : " + musicData);
         if (isInvalidMusicData(musicData)) {
             playButton.setEnabled(false);
-            prevButton.setEnabled(false);
-            nextButton.setEnabled(false);
-            return;
-        }
-
-        playButton.setImageResource(R.drawable.play_button);
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMediaPlayer.isPlaying()) {
-                    pauseMusic();
-                    playButton.setImageResource(R.drawable.play_button);
-                } else {
-                    playMusic();
-                    playButton.setImageResource(R.drawable.pause_button);
+        } else {
+            playButton.setImageResource(R.drawable.play_button);
+            playButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mMediaPlayer.isPlaying()) {
+                        pauseMusic();
+                        playButton.setImageResource(R.drawable.play_button);
+                    } else {
+                        playMusic();
+                        playButton.setImageResource(R.drawable.pause_button);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         prevButton.setEnabled(position > 0);
         prevButton.setOnClickListener(new View.OnClickListener() {

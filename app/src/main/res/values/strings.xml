@@ -12,4 +12,9 @@
     <string name="media_player_error">Currently media player is not supported.</string>
     <string name="play_music">Play Music</string>
     <string name="album_image">album image</string>
+    <string name="category_pop_rock_music">Pop/Rock Music</string>
+    <string name="category_soundtrack_music">Soundtrack</string>
+    <string name="category_classic_music">Classic</string>
+    <string name="category_new_age_music">New Age</string>
+    <string name="category_disney_music">Disney</string>
 </resources>

@@ -4,8 +4,13 @@
     <color name="colorPrimaryDark">#12005E</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="category_kpop_music">#E1BEE7</color>
-    <color name="category_my_music">#F3E5F5</color>
+    <color name="category_my_music">#f8bbd0</color>
+    <color name="category_kpop_music">#ffccbc</color>
+    <color name="category_pop_rock_music">#fff9c4</color>
+    <color name="category_soundtrack_music">#c8e6c9</color>
+    <color name="category_classic_music">#bbdefb</color>
+    <color name="category_new_age_music">#c5cae9</color>
+    <color name="category_disney_music">#e1bee7</color>
 
     <color name="album_image_background_color">@android:color/white</color>
     <color name="album_image_stroke_color">@android:color/darker_gray</color>

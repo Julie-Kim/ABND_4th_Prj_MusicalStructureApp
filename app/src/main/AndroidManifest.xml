@@ -22,16 +22,36 @@
         </activity>
 
         <activity
-            android:name=".KPopMusicActivity"
-            android:label="@string/category_kpop_music" />
-
-        <activity
             android:name=".MyMusicActivity"
             android:label="@string/category_my_music" />
 
         <activity
             android:name=".PlayActivity"
             android:label="@string/play_music" />
+
+        <activity
+            android:name=".KPopMusicActivity"
+            android:label="@string/category_kpop_music" />
+
+        <activity
+            android:name=".PopRockMusicActivity"
+            android:label="@string/category_pop_rock_music" />
+
+        <activity
+            android:name=".SoundtrackMusicActivity"
+            android:label="@string/category_soundtrack_music" />
+
+        <activity
+            android:name=".ClassicMusicActivity"
+            android:label="@string/category_classic_music" />
+
+        <activity
+            android:name=".NewAgeMusicActivity"
+            android:label="@string/category_new_age_music" />
+
+        <activity
+            android:name=".DisneyMusicActivity"
+            android:label="@string/category_disney_music" />
 
     </application>
 
