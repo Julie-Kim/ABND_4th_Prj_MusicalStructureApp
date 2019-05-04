@@ -25,17 +25,21 @@
                 android:id="@+id/title_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginBottom="@dimen/title_text_margin_bottom"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
                 android:textSize="@dimen/title_text_size"
                 android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 tools:text="Track name" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/list_item_padding"
+                android:layout_marginBottom="@dimen/album_image_margin_bottom"
                 android:contentDescription="@string/album_image"
                 android:src="@drawable/album_image" />
 
@@ -43,24 +47,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/name_text_padding_end"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:paddingEnd="@dimen/name_text_padding_end"
-                    android:paddingRight="@dimen/name_text_padding_end"
-                    android:text="@string/album" />
-
-                <TextView
                     android:id="@+id/album_text_view"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/track_info_text_size"
+                    android:layout_marginBottom="@dimen/list_item_padding"
+                    android:gravity="center"
+                    android:textSize="@dimen/album_text_size"
                     android:textStyle="bold"
                     tools:text="Album name" />
 
@@ -73,20 +68,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:paddingEnd="@dimen/name_text_padding_end"
-                    android:paddingRight="@dimen/name_text_padding_end"
-                    android:text="@string/artist" />
-
-                <TextView
                     android:id="@+id/artist_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:textSize="@dimen/track_info_text_size"
-                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold|italic"
                     tools:text="Artist name" />
 
             </LinearLayout>

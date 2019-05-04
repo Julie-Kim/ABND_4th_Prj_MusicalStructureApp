@@ -17,4 +17,5 @@
     <string name="category_classic_music">Classic</string>
     <string name="category_new_age_music">New Age</string>
     <string name="category_disney_music">Disney</string>
+    <string name="category_recommended_music">Recommended Music</string>
 </resources>

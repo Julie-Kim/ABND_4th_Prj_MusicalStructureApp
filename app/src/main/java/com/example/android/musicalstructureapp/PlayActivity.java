@@ -57,6 +57,7 @@ public class PlayActivity extends AppCompatActivity {
 
         TextView titleText = findViewById(R.id.title_text_view);
         titleText.setText(musicTrack.getTitle());
+        titleText.setSelected(true);
 
         TextView albumText = findViewById(R.id.album_text_view);
         albumText.setText(musicTrack.getAlbum());
