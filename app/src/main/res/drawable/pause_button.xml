@@ -17,8 +17,8 @@
         android:start="@dimen/play_play_icon_top_bottom"
         android:top="@dimen/play_play_icon_top_bottom">
         <bitmap
-            android:color="@color/play_control_icon_tint_color"
-            android:src="@drawable/pause_icon" />
+            android:src="@drawable/pause_icon"
+            android:tint="@color/play_control_icon_tint_color" />
     </item>
 
 </layer-list>
