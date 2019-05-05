@@ -22,8 +22,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public abstract class RecommendedTrackActivity extends AppCompatActivity {
-    private static final String TAG = "RecommendedTrackActivity";
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,13 +117,12 @@ public abstract class RecommendedTrackActivity extends AppCompatActivity {
 
                 for (int i = 0; i < trackArray.length(); i++) {
                     JSONObject trackObject = trackArray.getJSONObject(i).getJSONObject("track");
-                    String id = trackObject.getString("track_id");
                     String title = trackObject.getString("track_name");
                     String album = trackObject.getString("album_name");
                     String artist = trackObject.getString("artist_name");
 
-                    Log.d(TAG, "[" + i + "]" + " id: " + id + ", title: " + title + ", album: " + album + ", artist: " + artist);
-                    musicTracks.add(new MusicTrack(id, title, album, artist));
+                    Log.d(TAG, "[" + i + "]" + " title: " + title + ", album: " + album + ", artist: " + artist);
+                    musicTracks.add(new MusicTrack(title, album, artist));
                 }
 
                 mActivity.get().setMusicTrackAdapter(musicTracks);

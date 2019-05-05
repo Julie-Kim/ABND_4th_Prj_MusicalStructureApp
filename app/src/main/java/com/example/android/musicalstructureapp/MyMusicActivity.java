@@ -96,8 +96,8 @@ public class MyMusicActivity extends AppCompatActivity {
                 String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.AudioColumns.ALBUM));
                 String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.ArtistColumns.ARTIST));
 
-                Log.d(TAG, "id: " + id + ", title: " + title + ", album: " + album + ", artist: " + artist + ", data: " + data);
-                musicTracks.add(new MusicTrack(id, title, album, artist, data));
+                Log.d(TAG, "title: " + title + ", album: " + album + ", artist: " + artist + ", data: " + data);
+                musicTracks.add(new MusicTrack(title, album, artist, data));
             }
         }
         cursor.close();
